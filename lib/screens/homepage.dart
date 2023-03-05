@@ -27,33 +27,6 @@ class _HomePageState extends State<HomePage> {
             style: TextStyle(fontWeight: FontWeight.w900, fontSize: 20),
           ),
           centerTitle: true,
-          actions: [
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: InkWell(
-                onTap: () {
-                  Navigator.of(context)
-                      .push(
-                    MaterialPageRoute(
-                      builder: (context) => AddUser(null),
-                    ),
-                  )
-                      .then(
-                    (value) {
-                      if (value == true) {
-                        setState(() {});
-                      }
-                    },
-                  );
-                },
-                child: Icon(
-                  Icons.add,
-                  color: Colors.white,
-                  size: 24,
-                ),
-              ),
-            )
-          ],
         ),
         body: FutureBuilder<bool>(
           builder: (context, snapshot1) {
@@ -179,12 +152,18 @@ class _HomePageState extends State<HomePage> {
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            Navigator.of(context).push(
+            Navigator.of(context)
+                .push(
               MaterialPageRoute(
-                builder: (context) {
-                  return AddUser(null);
-                },
+                builder: (context) => AddUser(null),
               ),
+            )
+                .then(
+                  (value) {
+                if (value == true) {
+                  setState(() {});
+                }
+              },
             );
           },
           backgroundColor: Colors.black,
